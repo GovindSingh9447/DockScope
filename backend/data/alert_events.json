@@ -1,0 +1,98 @@
+[
+  {
+    "id": "cpu-alert-1",
+    "type": "high_cpu",
+    "threshold": 1,
+    "pattern": "",
+    "container_id": "a35ac1c0cc97",
+    "enabled": true,
+    "slack_webhook": "",
+    "email": "govindkrsingh0605@gmail.com",
+    "auto_restart": false,
+    "auto_stop": false
+  },
+  {
+    "id": "memory-alert-1",
+    "type": "high_memory",
+    "threshold": 50,
+    "pattern": "",
+    "container_id": "a35ac1c0cc97",
+    "enabled": true,
+    "slack_webhook": "",
+    "email": "govindkrsingh0605@gmail.com",
+    "auto_restart": false,
+    "auto_stop": false
+  },
+  {
+    "id": "memory-alert-1",
+    "type": "high_memory",
+    "threshold": 2,
+    "pattern": "",
+    "container_id": "a35ac1c0cc97",
+    "enabled": true,
+    "slack_webhook": "",
+    "email": "govindkrsingh0605@gmail.com",
+    "auto_restart": false,
+    "auto_stop": false
+  },
+  {
+    "id": "cpu-auto-restart",
+    "type": "high_cpu",
+    "threshold": 1,
+    "pattern": "",
+    "container_id": "a35ac1c0cc97",
+    "enabled": true,
+    "slack_webhook": "",
+    "email": "govindkrsingh0605@gmail.com",
+    "auto_restart": true,
+    "auto_stop": false
+  },
+  {
+    "id": "cpu-recovery-test",
+    "type": "high_cpu",
+    "threshold": 1,
+    "pattern": "",
+    "container_id": "a35ac1c0cc97",
+    "enabled": true,
+    "slack_webhook": "",
+    "email": "govindkrsingh0605@gmail.com",
+    "auto_restart": true,
+    "auto_stop": false
+  },
+  {
+    "id": "log-pattern-test",
+    "type": "log_pattern",
+    "threshold": 0,
+    "pattern": "ERROR",
+    "container_id": "a35ac1c0cc97",
+    "enabled": true,
+    "slack_webhook": "",
+    "email": "govindkrsingh0605@gmail.com",
+    "auto_restart": false,
+    "auto_stop": false
+  },
+  {
+    "id": "mem-alert-test",
+    "type": "high_memory",
+    "threshold": 50,
+    "pattern": "",
+    "container_id": "a35ac1c0cc97",
+    "enabled": true,
+    "slack_webhook": "",
+    "email": "govindkrsingh0605@gmail.com",
+    "auto_restart": false,
+    "auto_stop": false
+  },
+  {
+    "id": "mem-alert-test",
+    "type": "high_memory",
+    "threshold": 30,
+    "pattern": "",
+    "container_id": "a35ac1c0cc97",
+    "enabled": true,
+    "slack_webhook": "",
+    "email": "govindkrsingh0605@gmail.com",
+    "auto_restart": false,
+    "auto_stop": false
+  }
+]

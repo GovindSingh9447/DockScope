@@ -1,0 +1,51 @@
+---
+
+### ✅ `.gitignore`
+
+Save this as: `dockscope/.gitignore`
+
+```gitignore
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# Go build artifacts
+*.exe
+*.out
+*.test
+
+# Logs
+*.log
+backend/dockscope.log
+backend/whalewatch.log
+backend/logs/
+
+# SQLite & InfluxDB databases
+*.db
+*.sqlite
+*.bolt
+backend/db/*.db
+backend/db/*.sqlite
+backend/db/*.bolt
+backend/influxdb/
+backend/data/metrics.db
+
+# IDE & Editor configs
+.vscode/
+.idea/
+
+# Node/React files
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.env
+
+# Miscellaneous downloaded/generated
+export?id=*
+logs?id=*
+websocat_amd64-linux~
+metrics.html
+index.html
+````
+
+---
