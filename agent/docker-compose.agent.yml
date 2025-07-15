@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  dockscope-agent:
+    build:
+      context: ./agent
+      dockerfile: Dockerfile
+    container_name: dockscope-agent
+    env_file:
+      - ./agent/.env
+    network_mode: "host"  # Allows agent to access host's Docker socket (important!)
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
