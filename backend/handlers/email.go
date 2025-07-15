@@ -8,7 +8,7 @@ import (
 // SendEmailNotification sends email using Gmail SMTP
 func SendEmailNotification(to, subject, body string) error {
 	from := "ranawatapplication@gmail.com"
-	password := "ccsn cxfd xely cuwv" // Use Gmail App Password
+	password := "" // Use Gmail App Password
 
 	smtpHost := "smtp.gmail.com"
 	smtpPort := "587"
