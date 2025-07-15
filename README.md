@@ -113,9 +113,8 @@ npm run dev
 
 ## 👨‍💻 Contributors
 
-- **Govind Singh** — Backend, architecture
 - **Sahana Naveen** — Frontend, UI/UX
-
+- **Govind Singh** — Backend, Architecture 
 ---
 
 ## 🛡 License
