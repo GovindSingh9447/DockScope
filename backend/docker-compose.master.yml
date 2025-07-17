@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb
+    ports:
+      - '8086:8086'
+    volumes:
+      - ./backend/db/influxdb:/var/lib/influxdb
+    restart: unless-stopped
+
+  dockscope-master:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dockscope-master
+    env_file:
+      - ./backend/.env
+    ports:
+      - '9447:9447' # Backend + Frontend served here
+    volumes:
+      - ./backend/data:/app/data
+      - ./backend/db:/app/db
+    depends_on:
+      - influxdb
+    restart: unless-stopped

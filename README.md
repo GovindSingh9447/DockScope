@@ -9,17 +9,36 @@ The backend is written in Go, with InfluxDB for time-series storage and SQLite f
 ## 📁 Project Structure
 
 ```
-dockscope/
-├── agent/            # Agent service running on Docker hosts to collect metrics/logs
-├── backend/          # Go backend server with REST APIs and alert engine
-│   ├── handlers/     # HTTP API handlers (metrics, logs, alerts)
-│   ├── db/           # SQLite and InfluxDB storage
-│   ├── data/         # Static alert rules and fired events
-│   ├── logger/       # Centralized structured logging
-│   ├── logstore/     # In-memory and persisted logs
-│   └── main.go       # Backend entrypoint
-├── frontend/         # React frontend dashboard (Vite/CRA)
-├── go.mod / go.sum   # Go module dependencies
+DockScope/
+├── agent/                          # Lightweight Go-based agent to run on each Docker host
+│   ├── main.go                     # Agent code to collect & push metrics/logs
+│   ├── Dockerfile                 # Docker image for the agent
+│   └── docker-compose.agent.yml   # Compose file to run agent on remote nodes
+
+├── backend/                        # Central server that receives metrics, serves APIs, alerts
+│   ├── main.go                     # Main entrypoint of the Go backend
+│   ├── Dockerfile                 # Docker image for backend (includes frontend dist)
+│   ├── docker-compose.master.yml  # Compose file to run backend + InfluxDB
+│   ├── handlers/                  # API endpoints (logs, metrics, containers, etc.)
+│   ├── logger/                    # Custom logging setup
+│   ├── logstore/                  # In-memory or file-based log store
+│   ├── middleware/                # Middleware (e.g., CORS)
+│   ├── utils/                     # Utility functions
+│   ├── influx/                    # InfluxDB client wrapper
+│   ├── db/                        # Database helpers and configuration
+│   │   └── influxdb/              # InfluxDB engine files (ignored in Git)
+│   └── data/                      # Predefined alert rules and event logs
+
+├── frontend/                      # React-based UI (built with Vite)
+│   └── index.html                 # Entry file (actual dist/ gets bundled in Docker)
+
+├── docker-compose.master.yml      # (copied from backend/) Master compose for server deployment
+├── docker-compose.agent.yml       # (copied from agent/) Agent compose for remote VMs
+├── .gitignore                     # Files & folders excluded from Git
+├── LICENSE                        # MIT License
+├── README.md                      # You’re reading it!
+├── go.mod / go.sum                # Go dependencies
+
 ```
 
 ---
@@ -29,8 +48,8 @@ dockscope/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/GovindSingh9447/dockscope.git
-cd dockscope
+git clone https://github.com/GovindSingh9447/DockScope.git
+cd DockScope
 ```
 
 ---
@@ -83,14 +102,14 @@ npm run dev
 
 ## 🌐 API Endpoints
 
-| Method | Endpoint                | Description                      |
-|--------|-------------------------|----------------------------------|
-| GET    | `/containers`           | List running containers          |
-| GET    | `/metrics`              | Real-time container metrics      |
-| GET    | `/logs?id=<id>`         | Logs of specific container       |
-| GET    | `/alerts`               | Get current alert rules/status   |
-| POST   | `/agent/metrics`        | Agent sends metrics              |
-| POST   | `/agent/logs`           | Agent sends logs                 |
+| Method | Endpoint         | Description                    |
+| ------ | ---------------- | ------------------------------ |
+| GET    | `/containers`    | List running containers        |
+| GET    | `/metrics`       | Real-time container metrics    |
+| GET    | `/logs?id=<id>`  | Logs of specific container     |
+| GET    | `/alerts`        | Get current alert rules/status |
+| POST   | `/agent/metrics` | Agent sends metrics            |
+| POST   | `/agent/logs`    | Agent sends logs               |
 
 ---
 
@@ -113,9 +132,8 @@ npm run dev
 
 ## 👨‍💻 Contributors
 
-- **Govind Singh** — Backend, architecture
 - **Sahana Naveen** — Frontend, UI/UX
-
+- **Govind Singh** — Backend, Architecture 
 ---
 
 ## 🛡 License

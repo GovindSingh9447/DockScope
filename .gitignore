@@ -13,12 +13,14 @@ Thumbs.db
 *.exe
 *.out
 *.test
+email.key
 
 # Logs
 *.log
 backend/dockscope.log
 backend/whalewatch.log
 backend/logs/
+backend/email.key
 
 # SQLite & InfluxDB databases
 *.db

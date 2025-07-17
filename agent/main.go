@@ -13,13 +13,22 @@ import (
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
+	"github.com/joho/godotenv"
 )
 
-const (
-	centralServerURL = "http://13.203.202.82:9448/metrics"
-	authToken        = "your-secret-token"
-)
+func init() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("⚠️ No .env file found for agent, using system environment variables")
+	}
+}
 
+
+
+var (
+	masterURL = os.Getenv("CENTRAL_SERVER_URL")
+	authToken = os.Getenv("AUTH_TOKEN")
+)
 type ContainerMetrics struct {
 	ID     string  `json:"id"`
 	Name   string  `json:"name"`
@@ -39,9 +48,10 @@ func main() {
 	if hostID == "" {
 		hostID = getLocalIP() // fallback to public IP detection
 	}
-	serverURL := os.Getenv("SERVER_URL")
+	serverURL := os.Getenv("CENTRAL_SERVER_URL")
+
 	if serverURL == "" {
-		serverURL = centralServerURL
+		serverURL = masterURL
 	}
 
 	go startLogServer()
